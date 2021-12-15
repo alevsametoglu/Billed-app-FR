@@ -45,7 +45,8 @@ export default class NewBill {
       'e.target.querySelector(`input[data-testid="datepicker"]`).value',
       e.target.querySelector(`input[data-testid="datepicker"]`).value,
     )
-    const email = JSON.parse(localStorage.getItem('user')).email
+    const user = JSON.parse(localStorage.getItem('user'))
+    const email = user.email
     const bill = {
       email,
       type: e.target.querySelector(`select[data-testid="expense-type"]`).value,
