@@ -76,6 +76,45 @@ describe("Given I am connected as an employee", () => {
     })
   })
 })
+
+describe("Given I am on the NewBill Page and the form is completed", () => {
+  describe("When I click on the Submit NewBill button", () => {
+    test("Then the form should be submitted and I should be redirected to the Bills page", () => {
+      Object.defineProperty(window, "localStorage", {
+        value: localStorageMock,
+      })
+      window.localStorage.setItem(
+        "user",
+        JSON.stringify({
+          type: "Employee",
+        }),
+      )
+      const html = NewBillUI()
+      document.body.innerHTML = html
+
+      const onNavigate = (pathname) => {
+        document.body.innerHTML = ROUTES({ pathname })
+      }
+
+      const firestore = null
+      const newBill = new NewBill({
+        document,
+        onNavigate,
+        firestore,
+        localStorage: window.localStorage,
+      })
+
+      const form = screen.getByTestId("form-new-bill")
+      const handleSubmit = jest.fn(newBill.handleSubmit)
+      form.addEventListener("submit", handleSubmit)
+      fireEvent.submit(form)
+
+      expect(handleSubmit).toHaveBeenCalled()
+      expect(screen.getByText("Mes notes de frais")).toBeTruthy()
+    })
+  })
+})
+
 // test handleSubmit
 describe("When I submit a valid bill", () => {
   test("Then a bill is created and i should be redirected to Bills page", async () => {
