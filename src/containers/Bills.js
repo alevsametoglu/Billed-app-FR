@@ -40,20 +40,9 @@ export default class {
         .then((snapshot) => {
           const bills = snapshot.docs
             .map((doc) => {
-              try {
-                return {
-                  ...doc.data(),
-                  status: formatStatus(doc.data().status),
-                }
-              } catch (e) {
-                // if for some reason, corrupted data was introduced, we manage here failing formatDate function
-                // log the error and return unformatted date in that case
-                console.log(e, 'for', doc.data())
-                return {
-                  ...doc.data(),
-                  date: doc.data().date,
-                  status: formatStatus(doc.data().status),
-                }
+              return {
+                ...doc.data(),
+                status: formatStatus(doc.data().status),
               }
             })
             .filter((bill) => bill.email === userEmail)
