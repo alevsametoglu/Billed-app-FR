@@ -14,12 +14,17 @@
       "!**/external/**",
       "!**/fixtures/**",
       "!**/lcov-report/**"
-    ]
+    ],
+    "globals": {
+      "window": {}
+    }
   },
   "type": "module",
   "dependencies": {
     "express": "^4.17.1",
+    "jest-environment-jsdom": "^27.4.4",
     "jquery": "^3.5.1",
+    "jsdom": "^19.0.0",
     "path": "^0.12.7"
   },
   "devDependencies": {

@@ -1,8 +1,11 @@
+/**
+ * @jest-environment jsdom
+ */
 import { fireEvent, screen } from "@testing-library/dom"
 import NewBillUI from "../views/NewBillUI.js"
 import NewBill from "../containers/NewBill.js"
 import { ROUTES } from "../constants/routes"
-import { localStorageMock } from "../__mocks__/localStorage.js"
+// import { localStorageMock } from "../__mocks__/localStorage.js"
 import firebase from "../__mocks__/firebase"
 
 beforeEach(() => {
@@ -80,9 +83,9 @@ describe("Given I am connected as an employee", () => {
 describe("Given I am on the NewBill Page and the form is completed", () => {
   describe("When I click on the Submit NewBill button", () => {
     test("Then the form should be submitted and I should be redirected to the Bills page", () => {
-      Object.defineProperty(window, "localStorage", {
-        value: localStorageMock,
-      })
+      // Object.defineProperty(window, "localStorage", {
+      //   value: localStorageMock,
+      // })
       window.localStorage.setItem(
         "user",
         JSON.stringify({
@@ -122,7 +125,7 @@ describe("When I submit a valid bill", () => {
       document.body.innerHTML = ROUTES({ pathname })
     }
 
-    Object.defineProperty(window, "localStorage", { value: localStorageMock })
+    // Object.defineProperty(window, "localStorage", { value: localStorageMock })
     window.localStorage.setItem(
       "user",
       JSON.stringify({

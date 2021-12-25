@@ -5,7 +5,7 @@ import { localStorageMock } from "../__mocks__/localStorage.js"
 
 describe('Given I am connected as Employee', () => {
   test("Then Icons should be rendered", () => {
-    Object.defineProperty(window, 'localStorage', { value: localStorageMock })
+    // Object.defineProperty(window, 'localStorage', { value: localStorageMock })
     const user = JSON.stringify({
       type: 'Employee'
     })
